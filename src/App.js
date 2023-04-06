@@ -92,18 +92,32 @@ const products = [
     { title: 'Garlic', isFruit: false, id: 2 },
     { title: 'Apple', isFruit: true, id: 3 },
 ];
+//
+// export default function MyAppClick() {
+//     return (
+//         <div>
+//             <h1>Counters that update separately</h1>
+//             <MyButtonClick />
+//             <MyButtonClick />
+//         </div>
+//     );
+// }
+//
+// function MyButtonClick() {
+//     const [count, setCount] = useState(0);
+//
+//     function handleClick() {
+//         setCount(count + 1);
+//     }
+//
+//     return (
+//         <button onClick={handleClick}>
+//             Clicked {count} times
+//         </button>
+//     );
+// }
 
 export default function MyAppClick() {
-    return (
-        <div>
-            <h1>Counters that update separately</h1>
-            <MyButtonClick />
-            <MyButtonClick />
-        </div>
-    );
-}
-
-function MyButtonClick() {
     const [count, setCount] = useState(0);
 
     function handleClick() {
@@ -111,11 +125,22 @@ function MyButtonClick() {
     }
 
     return (
-        <button onClick={handleClick}>
+        <div>
+            <h1>Counters that update together</h1>
+            <MyButtonClick count={count} onClick={handleClick} />
+            <MyButtonClick count={count} onClick={handleClick} />
+        </div>
+    );
+}
+
+function MyButtonClick({ count, onClick }) {
+    return (
+        <button onClick={onClick}>
             Clicked {count} times
         </button>
     );
 }
+
 
 
 
